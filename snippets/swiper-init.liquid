@@ -1,32 +1,24 @@
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
-
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    function initSwiperSlider() {
-      if (window.Swiper) {
-        new Swiper('.mySwiper', {
-          loop: true,
-          autoplay: {
-            delay: 3500,
-            disableOnInteraction: false,
-          },
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-          },
-        });
-      } else {
-        setTimeout(initSwiperSlider, 100); // Reintentar si Swiper aún no está cargado
-      }
+  document.addEventListener('shopify:section:load', initSwiper);
+  document.addEventListener('DOMContentLoaded', initSwiper);
+
+  function initSwiper(e) {
+    const container = e.target ? e.target.querySelector('.mySwiper') : document.querySelector('.mySwiper');
+    if (!container || container.swiper) return;
+
+    if (window.Swiper) {
+      const swiper = new Swiper(container, {
+        loop:true,
+        autoplay:{ delay:3500, disableOnInteraction:false },
+        navigation:{ nextEl:'.swiper-button-next', prevEl:'.swiper-button-prev' },
+        pagination:{ el:'.swiper-pagination', clickable:true },
+        observer:true,
+        observeParents:true
+      });
+      container.swiper = swiper;
+    } else {
+      setTimeout(() => initSwiper(e), 100);
     }
-
-    initSwiperSlider();
-
-    // Vuelve a inicializar en modo editor si se actualiza contenido dinámico
-    document.addEventListener("shopify:section:load", initSwiperSlider);
-  });
+  }
 </script>
