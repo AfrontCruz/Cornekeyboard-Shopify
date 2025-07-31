@@ -1,24 +1,31 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 <script>
-  document.addEventListener('shopify:section:load', initSwiper);
-  document.addEventListener('DOMContentLoaded', initSwiper);
-
-  function initSwiper(e) {
-    const container = e.target ? e.target.querySelector('.mySwiper') : document.querySelector('.mySwiper');
+  function initShopifySwiper(container) {
     if (!container || container.swiper) return;
-
-    if (window.Swiper) {
-      const swiper = new Swiper(container, {
-        loop:true,
-        autoplay:{ delay:3500, disableOnInteraction:false },
-        navigation:{ nextEl:'.swiper-button-next', prevEl:'.swiper-button-prev' },
-        pagination:{ el:'.swiper-pagination', clickable:true },
-        observer:true,
-        observeParents:true
-      });
-      container.swiper = swiper;
-    } else {
-      setTimeout(() => initSwiper(e), 100);
-    }
+    new Swiper(container, {
+      loop: true,
+      autoplay: {
+        delay: 3500,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: container.querySelector('.swiper-button-next'),
+        prevEl: container.querySelector('.swiper-button-prev'),
+      },
+      pagination: {
+        el: container.querySelector('.swiper-pagination'),
+        clickable: true,
+      },
+      observer: true,
+      observeParents: true
+    });
   }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.mySwiper').forEach(initShopifySwiper);
+  });
+
+  document.addEventListener('shopify:section:load', function (event) {
+    event.target.querySelectorAll('.mySwiper').forEach(initShopifySwiper);
+  });
 </script>
