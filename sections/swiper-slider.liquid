@@ -42,20 +42,31 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
-<script src="{{ 'swiper-slider.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'swiper-slider.js' | asset_url }}" defer></script>
 
-<div class="swiper mySwiper">
+<div class="swiper mySwiper" aria-label="Slider de imágenes">
   <div class="swiper-wrapper">
     {% for block in section.blocks %}
+      {% assign desktop_img = block.settings.desktop_image %}
+      {% assign mobile_img = block.settings.mobile_image %}
+      {% assign alt_text = block.settings.alt_text | escape %}
+      {% assign slide_url = block.settings.slide_url | default: 'https://www.google.com' %}
       <div class="swiper-slide">
-        <a href="{{ block.settings.slide_url | default: 'https://www.google.com' }}" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; height: 100%;">
+        <a href="{{ slide_url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ alt_text }}">
           <picture>
-            {% if block.settings.mobile_image %}
-              <source media="(max-width: 767px)" srcset="{{ block.settings.mobile_image | image_url: width: 700 }}">
+            {% if mobile_img %}
+              <source media="(max-width: 767px)" srcset="{{ mobile_img | image_url: width: 700 }}">
             {% endif %}
-            {% if block.settings.desktop_image %}
-              <source media="(min-width: 768px)" srcset="{{ block.settings.desktop_image | image_url: width: 1200 }}">
-              <img src="{{ block.settings.desktop_image | image_url: width: 1200 }}" alt="{{ block.settings.alt_text | escape }}">
+            {% if desktop_img %}
+              <source media="(min-width: 768px)" srcset="{{ desktop_img | image_url: width: 1200 }}">
+              <img 
+                src="{{ desktop_img | image_url: width: 1200 }}" 
+                alt="{{ alt_text }}" 
+                loading="lazy"
+                width="1200"
+                height="675"
+                draggable="false"
+              >
             {% endif %}
           </picture>
         </a>
@@ -63,9 +74,9 @@
     {% endfor %}
   </div>
 
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
-  <div class="swiper-pagination"></div>
+  <button class="swiper-button-prev" aria-label="Anterior"></button>
+  <button class="swiper-button-next" aria-label="Siguiente"></button>
+  <div class="swiper-pagination" aria-label="Paginación"></div>
 </div>
 
 <style>
@@ -75,6 +86,7 @@
     aspect-ratio: 16 / 9;
     position: relative;
     margin: 0 auto;
+    overflow: hidden;
   }
 
   @media (max-width: 767px) {
@@ -88,6 +100,7 @@
     display: block;
     width: 100%;
     height: 100%;
+    text-decoration: none;
   }
 
   .swiper-slide img {
@@ -101,13 +114,17 @@
 
   .swiper-button-next,
   .swiper-button-prev {
-    color: white;
+    color: #fff;
     width: 44px;
     height: 44px;
     top: 50%;
     transform: translateY(-50%);
     position: absolute;
     z-index: 10;
+    background: rgba(0,0,0,0.3);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
   }
 
   .swiper-button-prev {
@@ -123,6 +140,6 @@
   }
 
   .swiper-pagination-bullet-active {
-    background: white;
+    background: #fff;
   }
 </style>
