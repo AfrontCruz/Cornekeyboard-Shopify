@@ -51,6 +51,15 @@
           "type": "url",
           "id": "slide_url",
           "label": "URL del slide"
+        },
+        {
+          "type": "range",
+          "id": "opacity_slide",
+          "label": "Opacidad del slide",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 100
         }
       ]
     }
@@ -84,7 +93,7 @@
       {% assign alt_text = block.settings.alt_text | escape %}
       {% assign slide_url = block.settings.slide_url | default: 'https://www.google.com' %}
       <div class="swiper-slide">
-        <a href="{{ slide_url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ alt_text }}">
+        <a href="{{ slide_url }}" style="opacity: {{ block.settings.opacity_slide | default: 100 }}%;" target="_blank" rel="noopener noreferrer" aria-label="{{ alt_text }}">
           <picture>
             {% if mobile_img %}
               <source media="(max-width: 767px)" srcset="{{ mobile_img | image_url: width: 700 }}">
