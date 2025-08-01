@@ -9,39 +9,28 @@
  */
 {
   "sections": {
-    "swiper_slider_mixFaX": {
+    "swiper_slider_XgLDkb": {
       "type": "swiper-slider",
       "blocks": {
-        "slide_CxWcWE": {
+        "slide_FdWepy": {
           "type": "slide",
           "settings": {
-            "desktop_image": "shopify://shop_images/1-desk.jpg",
-            "mobile_image": "shopify://shop_images/1-mobile.jpg",
-            "alt_text": "slider-1",
-            "slide_url": "",
-            "opacity_slide": 100
-          }
-        },
-        "slide_9FPjNB": {
-          "type": "slide",
-          "settings": {
-            "desktop_image": "shopify://shop_images/2-desk.jpg",
-            "mobile_image": "shopify://shop_images/2-mobile.jpg",
-            "alt_text": "Slide",
-            "slide_url": "",
-            "opacity_slide": 100
+            "desktop_image": "shopify://shop_images/1.jpg",
+            "mobile_image": "shopify://shop_images/1-m.jpg",
+            "alt_text": "primera-slide",
+            "slide_url": "shopify://products/nanoblade-x-edicion-mini-pro",
+            "opacity_slide": 54
           }
         }
       },
       "block_order": [
-        "slide_CxWcWE",
-        "slide_9FPjNB"
+        "slide_FdWepy"
       ],
       "name": "Swiper Slider",
       "settings": {
         "slider_height": "medium",
         "autoplay": true,
-        "autoplay_delay": 2000
+        "autoplay_delay": 5500
       }
     },
     "featured_collection": {
@@ -74,7 +63,7 @@
     }
   },
   "order": [
-    "swiper_slider_mixFaX",
+    "swiper_slider_XgLDkb",
     "featured_collection"
   ]
 }
