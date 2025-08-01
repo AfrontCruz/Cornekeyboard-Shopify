@@ -18,7 +18,8 @@
             "desktop_image": "shopify://shop_images/1-desk.jpg",
             "mobile_image": "shopify://shop_images/1-mobile.jpg",
             "alt_text": "slider-1",
-            "slide_url": ""
+            "slide_url": "",
+            "opacity_slide": 21
           }
         },
         "slide_9FPjNB": {
@@ -27,7 +28,8 @@
             "desktop_image": "shopify://shop_images/2-desk.jpg",
             "mobile_image": "shopify://shop_images/2-mobile.jpg",
             "alt_text": "Slide",
-            "slide_url": ""
+            "slide_url": "",
+            "opacity_slide": 100
           }
         }
       },
