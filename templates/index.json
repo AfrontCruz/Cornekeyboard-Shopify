@@ -17,7 +17,8 @@
           "settings": {
             "desktop_image": "shopify://shop_images/1-desk.jpg",
             "mobile_image": "shopify://shop_images/1-mobile.jpg",
-            "alt_text": "slider-1"
+            "alt_text": "slider-1",
+            "slide_url": ""
           }
         },
         "slide_9FPjNB": {
@@ -25,7 +26,8 @@
           "settings": {
             "desktop_image": "shopify://shop_images/2-desk.jpg",
             "mobile_image": "shopify://shop_images/2-mobile.jpg",
-            "alt_text": "Slide"
+            "alt_text": "Slide",
+            "slide_url": ""
           }
         }
       },
@@ -34,7 +36,9 @@
         "slide_9FPjNB"
       ],
       "name": "Swiper Slider",
-      "settings": {}
+      "settings": {
+        "slider_height": "large"
+      }
     },
     "featured_collection": {
       "type": "featured-collection",
