@@ -177,8 +177,8 @@
   }
 </style>
 
-{% javascript %}
-  function initShopifySwiper(container) {
+<script>
+function initShopifySwiper(container) {
   if (!container || container.swiper) return;
   new Swiper(container, {
     loop: {{ settings.loop | default: true }},
@@ -206,5 +206,4 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("shopify:section:load", function (event) {
   event.target.querySelectorAll(".mySwiper").forEach(initShopifySwiper);
 });
-
-{% endjavascript %}
+</script>
