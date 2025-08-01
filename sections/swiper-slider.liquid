@@ -85,7 +85,7 @@
     {% assign height_value = 500 %}
 {% endcase %}
 
-<div class="swiper mySwiper" aria-label="Slider de imágenes" style="max-height: {{ height_value }}px;">
+<div class="swiper mySwiper" data-section-id="{{ section.id }}" aria-label="Slider de imágenes" style="max-height: {{ height_value }}px;">
   <div class="swiper-wrapper">
     {% for block in section.blocks %}
       {% assign desktop_img = block.settings.desktop_image %}
@@ -190,7 +190,7 @@
 function initShopifySwiper(container) {
   if (!container || container.swiper) return;
   new Swiper(container, {
-    loop: {{ section.settings.loop | default: true }},
+    loop: {{ section.settings.autoplay | default: true }},
     autoplay: {
       delay: {{ section.settings.autoplay_delay | default: 5500 }},
       disableOnInteraction: false,
@@ -209,10 +209,10 @@ function initShopifySwiper(container) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll(".mySwiper").forEach(initShopifySwiper);
+  document.querySelectorAll("div[data-section-id=\"{{ section.id }}\"]").forEach(initShopifySwiper);
 });
 
 document.addEventListener("shopify:section:load", function (event) {
-  event.target.querySelectorAll(".mySwiper").forEach(initShopifySwiper);
+  event.target.querySelectorAll("div[data-section-id=\"{{ section.id }}\"]").forEach(initShopifySwiper);
 });
 </script>
