@@ -9,22 +9,33 @@
  */
 {
   "sections": {
-    "swiper_slider_XgLDkb": {
+    "swiper_slider_YfnaLX": {
       "type": "swiper-slider",
       "blocks": {
-        "slide_FdWepy": {
+        "slide_88iYG4": {
           "type": "slide",
           "settings": {
-            "desktop_image": "shopify://shop_images/1.jpg",
-            "mobile_image": "shopify://shop_images/1-m.jpg",
-            "alt_text": "primera-slide",
+            "desktop_image": "shopify://shop_images/1_f237757b-6c30-4aca-adea-89b5f7592d70.jpg",
+            "mobile_image": "shopify://shop_images/1-m_cde9620b-8cf0-436e-b450-5658288a2767.jpg",
+            "alt_text": "cornekeyboard-1",
             "slide_url": "shopify://products/nanoblade-x-edicion-mini-pro",
-            "opacity_slide": 54
+            "opacity_slide": 100
+          }
+        },
+        "slide_PYNrLi": {
+          "type": "slide",
+          "settings": {
+            "desktop_image": "shopify://shop_images/2.jpg",
+            "mobile_image": "shopify://shop_images/2-m.jpg",
+            "alt_text": "cornekeyboard-2",
+            "slide_url": "shopify://products/phantom-core-rgb-edicion-compacta",
+            "opacity_slide": 100
           }
         }
       },
       "block_order": [
-        "slide_FdWepy"
+        "slide_88iYG4",
+        "slide_PYNrLi"
       ],
       "name": "Swiper Slider",
       "settings": {
@@ -63,7 +74,7 @@
     }
   },
   "order": [
-    "swiper_slider_XgLDkb",
+    "swiper_slider_YfnaLX",
     "featured_collection"
   ]
 }
