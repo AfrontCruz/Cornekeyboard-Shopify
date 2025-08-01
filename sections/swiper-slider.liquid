@@ -209,10 +209,10 @@ function initShopifySwiper(container) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll(".mySwiper").forEach(initShopifySwiper);
+  initShopifySwiper(document.getElementById("{{ section.id }}"));
 });
 
 document.addEventListener("shopify:section:load", function (event) {
-  event.target.querySelectorAll(".mySwiper").forEach(initShopifySwiper);
+  initShopifySwiper(event.target.querySelector(".mySwiper"));
 });
 </script>
