@@ -12,6 +12,20 @@
         { "value": "large", "label": "Alto (800px)" }
       ],
       "default": "medium"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Activar reproducción automática",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "autoplay_delay",
+      "label": "Retraso de reproducción automática (ms)",
+      "default": 5500,
+      "min": 1000,
+      "max": 10000
     }
   ],
   "blocks": [
@@ -164,3 +178,35 @@
     background: #fff;
   }
 </style>
+
+{% javascript %}
+  function initShopifySwiper(container) {
+  if (!container || container.swiper) return;
+  new Swiper(container, {
+    loop: {{ settings.loop | default: true }},
+    autoplay: {
+      delay: {{ settings.autoplay_delay | default: 5500 }},
+      disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: container.querySelector(".swiper-button-next"),
+      prevEl: container.querySelector(".swiper-button-prev"),
+    },
+    pagination: {
+      el: container.querySelector(".swiper-pagination"),
+      clickable: true,
+    },
+    observer: true,
+    observeParents: true,
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".mySwiper").forEach(initShopifySwiper);
+});
+
+document.addEventListener("shopify:section:load", function (event) {
+  event.target.querySelectorAll(".mySwiper").forEach(initShopifySwiper);
+});
+
+{% endjavascript %}
