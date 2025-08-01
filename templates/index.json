@@ -37,7 +37,9 @@
       ],
       "name": "Swiper Slider",
       "settings": {
-        "slider_height": "large"
+        "slider_height": "medium",
+        "autoplay": false,
+        "autoplay_delay": 5500
       }
     },
     "featured_collection": {
