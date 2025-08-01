@@ -1,7 +1,19 @@
 {% schema %}
 {
   "name": "Swiper Slider",
-  "settings": [],
+  "settings": [
+    {
+      "type": "select",
+      "id": "slider_height",
+      "label": "Altura del slider",
+      "options": [
+        { "value": "small", "label": "Pequeño (300px)" },
+        { "value": "medium", "label": "Mediano (500px)" },
+        { "value": "tall", "label": "Alto (800px)" }
+      ],
+      "default": "medium"
+    }
+  ],
   "blocks": [
     {
       "type": "slide",
@@ -40,7 +52,19 @@
 }
 {% endschema %}
 
-<div class="swiper mySwiper" aria-label="Slider de imágenes">
+{% assign slider_height = section.settings.slider_height | default: 'medium' %}
+{% case slider_height %}
+  {% when 'small' %}
+    {% assign height_value = 300 %}
+  {% when 'medium' %}
+    {% assign height_value = 500 %}
+  {% when 'tall' %}
+    {% assign height_value = 800 %}
+  {% else %}
+    {% assign height_value = 500 %}
+{% endcase %}
+
+<div class="swiper mySwiper" aria-label="Slider de imágenes" style="max-height: {{ height_value }}px;">
   <div class="swiper-wrapper">
     {% for block in section.blocks %}
       {% assign desktop_img = block.settings.desktop_image %}
@@ -78,7 +102,7 @@
 <style>
   .swiper {
     width: 100vw;
-    max-height: 600px;
+    max-height: {{ height_value }}px;
     aspect-ratio: 16 / 9;
     position: relative;
     margin: 0 auto;
@@ -87,7 +111,7 @@
 
   @media (max-width: 767px) {
     .swiper {
-      max-height: 1000px;
+      max-height: {{ height_value }}px;
       aspect-ratio: auto;
     }
   }
