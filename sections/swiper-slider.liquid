@@ -190,8 +190,9 @@
 function initShopifySwiper(container) {
   if (!container || container.swiper) return;
   new Swiper(container, {
-    loop: {{ section.settings.autoplay }},
+    loop: true,
     autoplay: {
+      enabled: {{ section.settings.autoplay }},
       delay: {{ section.settings.autoplay_delay }},
       disableOnInteraction: false,
     },
